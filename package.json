@@ -1,0 +1,62 @@
+{
+  "private": true,
+  "homepage": ".",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "lint": "eslint --cache --fix --max-warnings 0 ./src/",
+    "format": "prettier --cache --write .",
+    "prepare": "husky",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-tsparticles": "^1.43.1",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.28.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.15.29",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.28.0",
+    "eslint-plugin-perfectionist": "^4.14.0",
+    "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
+    "jest-canvas-mock": "^2.5.2",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.5.3",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.89.1",
+    "stylelint": "^16.20.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "typescript": "^4.9.5",
+    "typescript-eslint": "^8.33.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/index.{js,jsx,ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/types/"
+    ]
+  },
+  "overrides": {
+    "nth-check": "^2.0.1",
+    "postcss": "^8.4.31",
+    "resolve-url-loader": "^5.0.0"
+  }
+}
