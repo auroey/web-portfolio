@@ -20,7 +20,7 @@ const Container = styled.div<{ $theme: Theme }>`
   }
 
   .button {
-    transition: color 0.5s linear;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     height: 6rem;
     width: 6rem;
     color: ${({ $theme }) => $theme.primaryTextColor};
@@ -30,7 +30,9 @@ const Container = styled.div<{ $theme: Theme }>`
     text-decoration: none;
     position: relative;
     z-index: 1;
-    border-radius: 25%;
+    border-radius: 12px;
+    border: 1px solid ${({ $theme }) => $theme.tertiaryTextColor}40;
+    backdrop-filter: blur(10px);
   }
 
   .icon {
@@ -41,16 +43,18 @@ const Container = styled.div<{ $theme: Theme }>`
 
   .icon_title {
     font-size: 1.25rem;
+    font-weight: 500;
   }
 
   .button:hover {
     background-color: ${({ $theme }) => $theme.shadowColor};
-    box-shadow: 0 0 0.75rem 0.75rem rgba(128, 128, 128, 0.25);
+    box-shadow: 0 8px 24px ${({ $theme }) => $theme.shadowColor};
+    border-color: ${({ $theme }) => $theme.primaryTextColor}60;
+    transform: translateY(-2px);
   }
 
   .button:active {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
+    transform: translateY(0) scale(0.98);
   }
 
   .button-container .icon_title {

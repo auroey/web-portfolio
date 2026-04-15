@@ -6,9 +6,16 @@ export const config: Config = {
     display: 'Xinrui Tang',
   },
   title: {
-    display: 'AI Research Student | AIGC Enthusiast',
+    display: 'AI Researcher | Machine Learning & AIGC',
   },
   buttons: [
+    {
+      name: 'resume',
+      display: 'Resume',
+      ariaLabel: 'Resume (opens in new window)',
+      icon: <Resume />,
+      href: 'https://auroey.github.io/',
+    },
     {
       name: 'github',
       display: 'GitHub',
@@ -22,13 +29,6 @@ export const config: Config = {
       ariaLabel: 'LinkedIn profile (opens in new window)',
       icon: <LinkedIn />,
       href: 'https://www.linkedin.com/in/kyle-tang-8a4752395',
-    },
-    {
-      name: 'resume',
-      display: 'Resume',
-      ariaLabel: 'Resume (opens in new window)',
-      icon: <Resume />,
-      href: `${process.env.PUBLIC_URL ?? ''}/Resume.pdf`,
     },
     {
       name: 'email',

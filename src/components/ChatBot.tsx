@@ -15,19 +15,31 @@ const C = {
   ChatButton: styled.button<{ $theme: Theme }>`
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
+    border-radius: 12px;
+    background: ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(255, 255, 255, 0.08)'
+        : 'rgba(0, 0, 0, 0.05)'};
+    border: 1px solid ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(255, 255, 255, 0.15)'
+        : 'rgba(0, 0, 0, 0.1)'};
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px ${({ $theme }) => $theme.shadowColor};
+    backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    transition: transform 0.2s;
-    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: ${({ $theme }) => $theme.primaryTextColor};
     &:hover {
-      transform: scale(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px ${({ $theme }) => $theme.shadowColor};
+      background: ${({ $theme }) =>
+        $theme.key === 'dark'
+          ? 'rgba(255, 255, 255, 0.12)'
+          : 'rgba(0, 0, 0, 0.08)'};
     }
   `,
   ChatWindow: styled.div<{ $isMobile: boolean; $theme: Theme }>`
@@ -49,8 +61,15 @@ const C = {
   `,
   Header: styled.div<{ $theme: Theme }>`
     padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(255, 255, 255, 0.05)'
+        : 'rgba(0, 0, 0, 0.03)'};
+    border-bottom: 1px solid ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(255, 255, 255, 0.1)'
+        : 'rgba(0, 0, 0, 0.08)'};
+    color: ${({ $theme }) => $theme.primaryTextColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,10 +79,10 @@ const C = {
     font-size: 18px;
     font-weight: 600;
   `,
-  CloseButton: styled.button`
+  CloseButton: styled.button<{ $theme: Theme }>`
     background: none;
     border: none;
-    color: white;
+    color: ${({ $theme }) => $theme.primaryTextColor};
     font-size: 24px;
     cursor: pointer;
     padding: 0;
@@ -72,8 +91,9 @@ const C = {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.2s;
     &:hover {
-      opacity: 0.8;
+      opacity: 0.6;
     }
   `,
   Messages: styled.div`
@@ -91,12 +111,21 @@ const C = {
     align-self: ${({ $isUser }) => ($isUser ? 'flex-end' : 'flex-start')};
     background: ${({ $isUser, $theme }) =>
       $isUser
-        ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+        ? $theme.key === 'dark'
+          ? 'rgba(0, 212, 255, 0.15)'
+          : 'rgba(0, 102, 204, 0.12)'
+        : $theme.key === 'dark'
+          ? 'rgba(255, 255, 255, 0.08)'
+          : 'rgba(0, 0, 0, 0.04)'};
+    border: 1px solid ${({ $isUser, $theme }) =>
+      $isUser
+        ? $theme.key === 'dark'
+          ? 'rgba(0, 212, 255, 0.3)'
+          : 'rgba(0, 102, 204, 0.2)'
         : $theme.key === 'dark'
           ? 'rgba(255, 255, 255, 0.1)'
-          : 'rgba(0, 0, 0, 0.05)'};
-    color: ${({ $isUser, $theme }) =>
-      $isUser ? 'white' : $theme.key === 'dark' ? '#e0e0e0' : '#2c3e50'};
+          : 'rgba(0, 0, 0, 0.08)'};
+    color: ${({ $theme }) => $theme.primaryTextColor};
     word-wrap: break-word;
   `,
   InputArea: styled.div<{ $theme: Theme }>`
@@ -112,38 +141,52 @@ const C = {
   Input: styled.input<{ $theme: Theme }>`
     flex: 1;
     padding: 12px 16px;
-    border-radius: 24px;
+    border-radius: 8px;
     border: 1px solid
       ${({ $theme }) =>
         $theme.key === 'dark'
-          ? 'rgba(255, 255, 255, 0.2)'
-          : 'rgba(0, 0, 0, 0.2)'};
+          ? 'rgba(255, 255, 255, 0.15)'
+          : 'rgba(0, 0, 0, 0.1)'};
     background: ${({ $theme }) =>
       $theme.key === 'dark'
         ? 'rgba(255, 255, 255, 0.05)'
         : 'rgba(0, 0, 0, 0.02)'};
-    color: ${({ $theme }) => ($theme.key === 'dark' ? '#e0e0e0' : '#2c3e50')};
+    color: ${({ $theme }) => $theme.primaryTextColor};
     font-size: 14px;
     outline: none;
+    transition: all 0.2s;
     &:focus {
-      border-color: #667eea;
+      border-color: ${({ $theme }) =>
+        $theme.key === 'dark'
+          ? 'rgba(0, 212, 255, 0.5)'
+          : 'rgba(0, 102, 204, 0.5)'};
     }
   `,
-  SendButton: styled.button`
+  SendButton: styled.button<{ $theme: Theme }>`
     padding: 12px 24px;
-    border-radius: 24px;
-    border: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    border-radius: 8px;
+    border: 1px solid ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(255, 255, 255, 0.2)'
+        : 'rgba(0, 0, 0, 0.15)'};
+    background: ${({ $theme }) =>
+      $theme.key === 'dark'
+        ? 'rgba(0, 212, 255, 0.15)'
+        : 'rgba(0, 102, 204, 0.12)'};
+    color: ${({ $theme }) => $theme.primaryTextColor};
     cursor: pointer;
     font-size: 14px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    font-weight: 500;
+    transition: all 0.2s;
     &:hover {
-      transform: scale(1.05);
+      background: ${({ $theme }) =>
+        $theme.key === 'dark'
+          ? 'rgba(0, 212, 255, 0.25)'
+          : 'rgba(0, 102, 204, 0.2)'};
+      transform: translateY(-1px);
     }
     &:disabled {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
     }
   `,
@@ -155,17 +198,17 @@ const C = {
   `,
   QuickButton: styled.button<{ $theme: Theme }>`
     padding: 10px 16px;
-    border-radius: 20px;
+    border-radius: 8px;
     border: 1px solid
       ${({ $theme }) =>
         $theme.key === 'dark'
-          ? 'rgba(255, 255, 255, 0.2)'
-          : 'rgba(0, 0, 0, 0.2)'};
+          ? 'rgba(255, 255, 255, 0.15)'
+          : 'rgba(0, 0, 0, 0.1)'};
     background: ${({ $theme }) =>
       $theme.key === 'dark'
         ? 'rgba(255, 255, 255, 0.05)'
         : 'rgba(0, 0, 0, 0.02)'};
-    color: ${({ $theme }) => ($theme.key === 'dark' ? '#e0e0e0' : '#2c3e50')};
+    color: ${({ $theme }) => $theme.secondaryTextColor};
     cursor: pointer;
     font-size: 13px;
     text-align: left;
@@ -175,7 +218,10 @@ const C = {
         $theme.key === 'dark'
           ? 'rgba(255, 255, 255, 0.1)'
           : 'rgba(0, 0, 0, 0.05)'};
-      border-color: #667eea;
+      border-color: ${({ $theme }) =>
+        $theme.key === 'dark'
+          ? 'rgba(0, 212, 255, 0.5)'
+          : 'rgba(0, 102, 204, 0.5)'};
     }
   `,
 };
@@ -292,6 +338,7 @@ export const ChatBot = () => {
           <C.Header $theme={theme}>
             <C.Title>数字分身</C.Title>
             <C.CloseButton
+              $theme={theme}
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -343,6 +390,7 @@ export const ChatBot = () => {
               disabled={isLoading}
             />
             <C.SendButton
+              $theme={theme}
               onClick={() => {
                 void handleSend();
               }}

@@ -1,21 +1,21 @@
 import { Themes } from 'types';
 
-// 使用更柔和、更有科技感的配色方案
+// 简约专业的科研科技风格配色
 export const themes: Themes = {
   dark: {
     key: 'dark',
-    primaryTextColor: '#e0e0e0',
-    secondaryTextColor: '#b0b0b0',
-    tertiaryTextColor: '#808080',
-    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-    shadowColor: '#0000007f',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#a0aec0',
+    tertiaryTextColor: '#718096',
+    background: 'linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%)',
+    shadowColor: '#00d4ff33',
   },
   light: {
     key: 'light',
-    primaryTextColor: '#2c3e50',
-    secondaryTextColor: '#34495e',
-    tertiaryTextColor: '#7f8c8d',
-    background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-    shadowColor: '#ffffff7f',
+    primaryTextColor: '#1a202c',
+    secondaryTextColor: '#4a5568',
+    tertiaryTextColor: '#718096',
+    background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e2e8f0 100%)',
+    shadowColor: '#0066cc22',
   },
 };
